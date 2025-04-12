@@ -1,0 +1,133 @@
+## 📅 Day 5 – Introduction to Kubernetes
+
+Today’s session was all about **Kubernetes** — from setting up an EKS cluster on AWS to deploying a pod inside a custom namespace.
+
+---
+
+## 🛠️ How to Create a Kubernetes Cluster (AWS + EC2 + EKS)
+
+### Step 1: Setup EC2 Instance
+
+1. Go to EC2 dashboard
+2. Launch a new instance:
+   - Instance Type: `t2.medium`
+   - OS: `Ubuntu`
+   - Memory: ~25 GB
+3. Launch and configure using **PuTTY**
+
+---
+
+### Step 2: Initial Setup
+
+```bash
+sudo su
+apt update -y
+
+Step 3: Install kubectl
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s \
+https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s \
+https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+
+# Verify
+echo "$(cat kubectl.sha256) kubectl" | sha256sum --check
+
+# Install
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+chmod +x kubectl
+mkdir -p ~/.local/bin
+mv ./kubectl ~/.local/bin/kubectl
+
+# Verify installation
+kubectl version --client
+
+Step 4: Install eksctl
+
+ARCH=amd64
+PLATFORM=$(uname -s)_$ARCH
+
+curl -sLO "https://github.com/eksctlio/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
+curl -sL "https://github.com/eksctlio/eksctl/releases/latest/download/eksctl_checksums.txt" | grep $PLATFORM | sha256sum --check
+
+tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
+sudo mv /tmp/eksctl /usr/local/bin
+
+Step 5: Install AWS CLI
+
+sudo apt-get install unzip -y
+
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+Configure using IAM user credentials:
+
+aws configure
+# Enter Access Key, Secret, Region (ex: sa-east-1)
+
+Step 6: Create EKS Cluster
+
+eksctl create cluster \
+--name wuphf-cluster \
+--region sa-east-1 \
+--zones sa-east-1b \
+--nodegroup-name wuphf-nodes \
+--node-type t2.medium \
+--nodes 2
+
+## 🔍 Kubernetes Cluster Management
+Become root user:
+sudo su
+
+Check Cluster Nodes
+kubectl get nodes
+
+Create a Namespace
+kubectl create namespace wuphf
+
+Or use a YAML file:
+touch wuphf-namespace.yaml
+vi wuphf-namespace.yaml
+
+wuphf-namespace.yaml
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: wuphf-2
+
+Apply the namespace:
+kubectl apply -f wuphf-namespace.yaml
+
+Check all namespaces:
+kubectl get ns
+
+## 🚀 Deploy a Pod in Namespace
+Create pod config:
+vi wuphf-pod.yaml
+
+wuphf-pod.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wuphf-2
+  namespace: wuphf-2
+spec:
+  containers:
+    - name: c-1
+      image: daviddocker526/ipl
+      ports:
+        - containerPort: 80
+
+Apply pod config:
+kubectl apply -f wuphf-pod.yaml
+
+## 🔍 Pod Management Commands
+Task	                        Command
+List pods in namespace	kubectl get pods -n wuphf-2
+View pod logs	        kubectl logs wuphf-2 -n wuphf-2
+Describe pod	        kubectl describe pod wuphf-2 -n wuphf-2
+Delete pod	            kubectl delete pod wuphf-2 -n wuphf-2
+Confirm deletion	    kubectl get pods -n wuphf-2
