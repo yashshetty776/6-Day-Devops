@@ -1,0 +1,96 @@
+## 📅 Day 1 – Introduction to DevOps, Cloud Basics & Linux Essentials
+
+On the first day of training, we were introduced to the **fundamentals of DevOps** and the **importance of cloud computing**. Here's what we learned:
+
+---
+
+## 🚀 What is DevOps?
+
+Our trainer explained that **DevOps** is both a **cultural shift** and a **technical practice** that integrates **development (Dev)** and **operations (Ops)** teams to deliver software:
+
+- **Faster**
+- **More reliably**
+- **Collaboratively**
+
+Traditionally, Dev and Ops worked in silos, leading to miscommunication and delays. DevOps solves this by enabling **continuous feedback**, **automation**, and **integration** across the entire software lifecycle.
+
+---
+
+## 🔁 DevOps Pipeline
+
+We were introduced to the concept of a **DevOps pipeline**, which is an automated process that allows code to move through various stages:
+
+1. **Build**
+2. **Test**
+3. **Deploy**
+
+Each code change goes through the same consistent flow, reducing human errors and ensuring high-quality delivery.
+
+### 🧰 Tools Commonly Used:
+- **Git** – Version control
+- **Jenkins / GitHub Actions** – CI/CD pipelines
+- **Docker** – Containerization
+- **Monitoring Tools** – For post-deployment reliability
+
+---
+
+## ❓ Why is DevOps Needed?
+
+We learned that DevOps solves key issues from the traditional development model by introducing:
+
+- **Continuous Integration (CI)**
+- **Continuous Deployment (CD)**
+- **Automated Testing & Delivery**
+- **Improved Collaboration**
+
+---
+
+## 💼 4 Key Factors for Business Success (With DevOps)
+
+1. ⚡ Faster Delivery of Services  
+2. ✅ High Quality – No compromise on standards  
+3. 💸 Lesser Spending – Efficient use of resources  
+4. 🌐 High Availability of Services  
+
+These are the reasons why DevOps practices are adopted in modern IT and business environments.
+
+---
+
+## ☁️ Cloud Computing Basics
+
+To support DevOps practices, we were introduced to the concept of **Cloud Computing**:
+
+- **Cloud** refers to remote services available over the internet.
+- **Data Center** is a physical setup where multiple servers are hosted.
+
+### 🧩 Types of Cloud:
+
+- **Public Cloud** – Accessible over the internet (e.g., AWS, Azure)
+- **Private Cloud** – Used internally by organizations
+
+### ☁️ Service Models:
+
+- **IaaS** – Infrastructure as a Service  
+- **PaaS** – Platform as a Service  
+- **SaaS** – Software as a Service  
+
+---
+
+## 🌍 Introduction to AWS
+
+We discussed **Amazon Web Services (AWS)** as a leading public cloud provider and its key advantages:
+
+- **Self-service** capabilities
+- **High Availability** (up to 99.11%)
+- **On-demand services** as needed
+
+### 🧱 AWS Services Covered:
+
+| Category     | Services Explained                     |
+|--------------|----------------------------------------|
+| **Compute**  | EC2 – Deploy applications on cloud     |
+| **Containers** | EKS – Elastic Kubernetes Service       |
+| **Databases** | DynamoDB (NoSQL), RDS (Relational DB)  |
+
+---
+
