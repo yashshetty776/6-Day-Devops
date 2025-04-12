@@ -1,0 +1,86 @@
+## 📅 Day 4 – Introduction to Docker and Docker Hub
+
+Today we covered everything from **Docker basics**, to building **Docker images**, working with **containers**, and pushing images to **Docker Hub**. We also explored different environments in a software development lifecycle.
+
+---
+
+## 🌍 Software Environments
+
+| Environment         | Description                                                                 |
+|---------------------|-----------------------------------------------------------------------------|
+| Dev Environment     | Where developers test minimal functionalities.                              |
+| Testing Environment | QA team runs functional, non-functional, and load test cases.               |
+| UAT Environment     | User Acceptance Testing – shows the prototype to the customer.              |
+| Production          | Final deployment where customers can access the application.                |
+
+---
+
+## 📦 What is a Container?
+
+A **container** is a lightweight, isolated environment where applications run with all their dependencies.
+
+---
+
+## 🧾 Docker Concepts
+
+| Term         | Description                                                                 |
+|--------------|-----------------------------------------------------------------------------|
+| **Docker File**  | A text document with instructions on how to build a Docker image.        |
+| **Docker Image** | A packaged template containing source code, dependencies, configs.       |
+| **Docker Hub**   | A cloud-based registry where Docker images can be stored and shared.     |
+
+---
+
+### 🚀 Docker Workflow
+
+```text
+Developer → Dockerfile → Docker Image → Docker Hub → Staging Environment
+🔧 Common Docker Commands
+Command	Description
+docker ps -a	Shows all containers (running or stopped)
+docker ps	Shows running containers
+docker create -it --name webserver amazonlinux /bin/bash	Creates a container with terminal access
+docker exec -it webserver /bin/bash	Enters the running container
+exit	Exits the container and stops it
+ctrl + P + Q	Detach from container, but keep it running
+docker run -it --name sample ubuntu /bin/bash	Creates and runs container interactively
+docker run -td --name web-app -p 3002:3000 muralisocial123/cart-page-test:1.0	Runs container in detached mode
+Every Docker container gets a unique name, ID, and port.
+Each microservice should ideally run on a different port.
+
+🛠 Dockerfile Essentials
+A Dockerfile is made up of instructions to build an image. These are categorized as:
+
+## 🏗 Build Instructions
+Instruction	Purpose
+FROM	Sets the base image (must be first line)
+COPY	Copies files/directories into the image
+ADD	Like COPY but supports downloading URLs or extracting archives
+RUN	Installs dependencies or runs shell commands during build
+.dockerignore	Specifies files to exclude while building the image
+
+##▶ Run Instructions
+Instruction	Purpose
+CMD	Defines the command to run in a container (can accept runtime args)
+ENTRYPOINT	Defines the entry point of the application (no runtime args)
+EXPOSE	Tells Docker which port the app listens on
+ENV	Sets environment variables in the container
+WORKDIR	Sets working directory for other instructions
+USER	Sets the user to use inside the container
+
+##📋 7 Steps to Write a Dockerfile for Any App
+
+Identify the base image of the application
+
+Create a working directory
+
+Copy dependencies into the image
+
+Install dependencies
+
+Copy source code into the image
+
+Define exposed port
+
+Mention which code to run (CMD or ENTRYPOINT)
+
