@@ -1,4 +1,4 @@
-## 📅 Day 1 – Introduction to DevOps, Cloud Basics & Linux Essentials
+## 📅 Day 1 – Introduction to DevOps and Cloud Basics
 
 On the first day of training, we were introduced to the **fundamentals of DevOps** and the **importance of cloud computing**. Here's what we learned:
 
