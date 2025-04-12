@@ -1,0 +1,92 @@
+# Kubernetes - Day 6
+
+## What is a Namespace?
+
+- Dividing a cluster into isolated environments.  
+- When deploying multiple projects, we use namespaces to avoid conflicts.
+- Created automatically by Kubernetes.
+- To check the health of the node, Kubernetes master node uses **lease objects**.
+- `kube-public`: A special namespace that is publicly accessible.
+
+> **Note:** At the time of cluster creation, by default all the resources like metric server, CNI, CoreDNS, etc. will be created in the `kube-system` namespace.  
+> In production environments, **never deploy applications in the `default` namespace**.
+
+---
+
+## How to Create a Custom Namespace?
+
+You can create a namespace manually using YAML or via command line.
+
+---
+
+## Issues When a Pod Goes Down
+
+1. **Application Downtime**  
+   - Solution: Attach **controllers** to the pod (like Deployments, ReplicaSets).
+
+2. **Pod IP Address Changes**  
+   - Solution: Create **Kubernetes Services** to provide a stable endpoint (ClusterIP/NodePort/LoadBalancer).
+
+3. **Loss of Data**  
+   - Solution: Use **Volumes** in Kubernetes to persist data beyond pod lifecycle.
+
+---
+
+## ReplicaSet
+
+- ReplicaSet is a Kubernetes object that maintains the **desired number of pods running at all times**.
+- Ensures: `Desired State = Actual State`.
+
+> **Note:**  
+> In real-time production, ReplicaSet is not recommended directly because:
+> - **No Rollback/Rollout support**  
+> Instead, use **Deployments**.
+
+---
+
+## What is a Deployment?
+
+- A **Deployment** is the recommended way to deploy applications in Kubernetes.
+- It manages the **ReplicaSet**, which in turn manages the **Pods**.
+- Supports **rollout** and **rollback** features.
+- Helps you manage application versioning, scaling, and more robust deployment workflows.
+
+---
+
+## Kubernetes Services
+
+To expose an application to the browser or external world, Kubernetes introduces the **Service** object.
+
+### Types of Services:
+
+1. **ClusterIP** (default):  
+   - Accessible only within the cluster.
+2. **NodePort**:  
+   - Exposes the service on each Node’s IP at a static port.
+3. **LoadBalancer**:  
+   - Provisions a cloud provider’s external load balancer.
+
+---
+
+## Monitoring in Kubernetes
+
+Monitoring is essential to understand what's going on inside the cluster.
+
+- Helps detect issues, analyze trends, and observe usage metrics (CPU, memory, health, etc.).
+
+### Monitoring Stack:
+
+- **Prometheus**:  
+  - A **metrics server**.
+  - Collects **time series data (TSDB)** from various targets.
+  - Pulls metrics from pods, nodes, and services.
+
+- **Grafana**:  
+  - Visualization tool that works with Prometheus.
+  - Helps build **dashboards** with pie charts, line graphs, gauges, etc.
+  - Makes monitoring intuitive and user-friendly.
+
+---
+
+> This wraps up the Kubernetes fundamentals! 🚀  
+> Make sure to keep practicing `kubectl`, writing YAMLs, and exploring Helm charts for more advanced setups!
