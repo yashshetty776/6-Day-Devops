@@ -1,0 +1,101 @@
+## 📅 Day 3 – Introduction to Terraform and Docker
+Today, we explored **Infrastructure as Code (IaC)** using **Terraform** and learned how to automate cloud resource creation. We also discussed **Docker**, **containerization**, and the differences between **monolithic** and **microservices** architecture.
+
+---
+
+## 🌐 Terraform – Infrastructure as Code (IaC)
+
+Terraform is an **open-source IaC tool** that allows you to define and provision cloud infrastructure using a simple, declarative language.
+
+### ✅ Why Terraform?
+
+Using Terraform, we can automate the creation of resources like:
+
+- EC2 Instances
+- VPCs
+- Subnets
+- Load Balancers
+- Internet Gateways
+- Databases
+
+---
+
+## 🪜 Terraform Setup Steps
+
+### Step 1: Install Terraform on your Linux machine
+Download Terraform binary and extract it.  
+Add Terraform to the system path.
+
+### Step 2: Set Terraform Path
+
+```bash
+sudo mv terraform /usr/local/bin/
+terraform --version
+Step 3: Configure AWS Credentials
+Install and configure AWS CLI:
+
+bash
+Copy
+Edit
+sudo apt install awscli
+aws configure
+Enter your Access Key, Secret Key, Region, and Output format
+
+## 📁 Terraform File Structure & Blocks
+When writing Terraform scripts, we use blocks like:
+
+provider – Defines the cloud provider (e.g., AWS, Azure)
+
+resource – Specifies the type of resource (e.g., EC2, VPC)
+
+variable – Defines variables to be used across the files
+
+output – Displays useful information like IPs, VPC ID, etc.
+
+## 🧾 EC2 Instance Terraform Script – ec2.tf
+hcl
+Copy
+Edit
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_instance" "web" {
+  ami           = "ami-02f624c08a83ca16f"
+  instance_type = "t2.micro"
+  key_name      = "Nidhi-server"
+
+  tags = {
+    Name = "Yash"
+  }
+}
+
+##🖥️ Required EC2 Fields:
+Amazon Machine Image ID (ami)
+
+Instance Type (t2.micro)
+
+Key Pair Name
+
+Storage (default unless customized)
+
+Instance Name (via tags)
+
+## ⚙️ Terraform CLI Commands
+Command	Description
+terraform init	Initializes Terraform and downloads provider plugins
+terraform validate	Validates the Terraform files for syntax and structure
+terraform plan	Shows what Terraform will do before it does it
+terraform apply	Applies the changes and creates the resources in AWS
+terraform destroy	Destroys all the resources created via the script
+Terraform also creates a file terraform.tfstate that tracks the infrastructure's current state.
+⚠️ This file must be secured as it can be misused if accessed by hackers. Prefer storing it in a cloud backend.
+
+## 🌍 VPC Notes
+While creating a VPC using Terraform, always specify:
+
+VPC name
+
+CIDR block (IP range)
+
+Tenancy (costing model)
