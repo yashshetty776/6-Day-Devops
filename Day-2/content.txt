@@ -1,0 +1,83 @@
+## 📅 Day 2 – Introduction to AWS and Linux
+
+On this day, we created and launched our first **EC2 instance** on AWS, learned how to **connect via PuTTY**, and were introduced to **basic Linux commands** and server management.
+
+---
+
+## 🌩️ Creating an AWS EC2 Instance
+
+We followed a step-by-step guide to launch a virtual server on Amazon Web Services:
+
+### ✅ EC2 Setup Steps
+
+1. Log in to the [AWS Console](https://aws.amazon.com/)
+2. Navigate to **EC2** from the AWS services menu
+3. Click on **Instances**, then **Launch Instance**
+4. Enter a name for the instance
+5. Select the **Instance Type** (e.g., `t2.micro` for free tier)
+6. Choose the **Operating System** (e.g., Amazon Linux)
+7. Choose or create a **Key Pair** (for secure SSH access)
+8. Choose or create a **Security Group** (allow relevant ports)
+9. Click **Launch Instance**
+10. Wait for the instance to start
+11. Go to **Instances**, select your instance, and click **Connect**
+12. Copy the **Public IP Address**
+13. Open **PuTTY** on your local machine:
+    - Paste the public IP in the "Host Name" field
+    - Under **SSH > Auth**, load your `.ppk` key file
+14. Click **Open** and connect
+15. Enter the **username** (`ec2-user` for Amazon Linux)
+16. ✅ You are now connected to your EC2 instance via SSH!
+
+---
+
+## 🐧 Linux Basics – Commands & Concepts
+
+Once connected to the EC2 instance, we practiced basic Linux commands to navigate and manage files.
+
+### 🔍 Navigation & File Management
+
+```bash
+pwd             # Show current directory
+ls              # List files and directories
+cd <dir>        # Change directory
+touch file.txt  # Create a new empty file
+mkdir folder    # Create a new directory
+rm file.txt     # Delete a file
+clear           # Clear the terminal screen
+
+###📄 Viewing & Editing Files
+bash
+Copy
+Edit
+cat file.txt      # Display contents of a file
+vi file.txt       # Open a file in vi editor
+nano file.txt     # Open file in nano (if installed)
+
+###📦 Package Management (Amazon Linux – Red Hat Based)
+bash
+Copy
+Edit
+yum update             # Update all packages
+yum install httpd      # Install Apache HTTP server (httpd)
+yum stands for Yellowdog Updater Modified
+It's used for installing, updating, and managing packages
+
+###🔧 Service Management
+bash
+Copy
+Edit
+service httpd status   # Check the status of the Apache server
+service httpd start    # Start the server if it's not running
+
+###🖥️ Linux Server Families & Web Servers
+We were introduced to the two major Linux families and their corresponding web servers:
+
+Linux Family	Examples	Web Server
+Red Hat	Amazon Linux, RHEL, Oracle Linux	httpd (Apache)
+Debian	Ubuntu, Debian OS	apache2 or nginx
+Red Hat-based systems use httpd (Apache HTTP Daemon)
+
+Debian-based systems use apache2 or nginx
+
+-----
